@@ -1,0 +1,19 @@
+from urllib import request
+import time
+import os
+
+while True:
+      #调用接口从微信端接收一条消息
+      msg = request.urlopen("http://aip.itmojun.com/pc/cmd/get?id=huangjingyu").read()
+      msg = nsg.decode("gbk") # 将消息转码为字符串类型
+      
+      if msg !="":
+          print(msg)  # 如果成功接收到消息就打印出来
+          
+          if "关机" in msg:
+          # 关机
+              os.system("shutdown -s -t 0")
+              
+           time.sleep(3)  # 避免接收到重复的消息
+       else:
+           time.sleep(1)  # 如果没有接收到消息就休眠一秒再接收
